@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/css/global.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+	<!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+	<style>
+		.table-body{
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	
+	<header class ="header">
+	{{>layouts/header}}
+	</header>
+	
+	<section class ="wrapper">
+		<aside class ="wrapper_aside">
+		
+		</aside>
+		<main class ="wrapper_main">
+			<div class ="wrapper_content ">
+				<div class ="table-responsive">
+					<table class ="table table-hover table-center">
+					<thead class ="table-dark">
+						<tr>
+							<th scope="col" class ="text-center"><b>id</b></th>
+							<th scope="col" class ="text-center"><b>title</b></th>
+							<th scope="col" class ="text-center"><b>content</b></th>
+							<th scope="col" class ="text-center"><b>author</b></th>
+						</tr>
+					</thead>
+					<tbody class ="table-body text-center">
+					{{#list}}
+						<tr>
+							<td scope="row">{{id}}</td>
+							<td>{{title}}</td>
+							<td>{{content}}</td>
+							<td>{{author}}</td>
+						</tr>
+					{{/list}}
+					</tbody>
+					</table>
+				</div>
+			</div>
+		
+			<div class ="input_form">
+ 				<form action ="/vi/posts" method ="post">
+					<div class ="form-group1">
+						<label for ="f_title">title : </label>
+						<input type ="text" name="title" id ="f_title" class="form-control" required/></div>
+					<div class ="form-group1">
+						<label for ="f_content">content : </label>
+						<input type ="text" name="content" id="f_content" class="form-control" required/></div>
+					<div class ="form-group">
+						<label for="f_author">author : </label>
+						<input type ="text" name="author" id="f_author" class="form-control" required/></div>
+					<div class ="form-group"><input id ="submitform2" type ="submit" value ="전송" class="btn btn-primary" /></div>
+				</form>
+			</div>
+		</main>
+	</section>
+	
+	
+	<footer class ="footer">
+	{{>layouts/footer}}
+	</footer>
+	
+	<script>
+		$('#submitform').on('click',function(){
+			alert('전송')
+			$.ajax({
+				url : "/api/posts",
+				type : "application/json",
+				method : "post",
+				data : {
+					title : $('f_title').val(),
+					content : $('f_content').val(),
+					author : $('f_author').val()
+				},
+				success : function(data){
+					console.log(data);
+				}
+			});
+		});
+	
+	</script>
+</body>
+</html>

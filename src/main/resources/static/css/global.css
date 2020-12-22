@@ -1,0 +1,26 @@
+@charset "UTF-8";
+@import "reset.css";
+
+.header{
+	border-bottom:2px solid #eee;
+	height:50px;
+	padding:0px;
+	margin:0px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.wrapper{
+	min-height:800px;
+	margin: 8px;
+	padding: 8px;	
+}
+.footer{
+	border-top:2px solid #eee;
+	height:50px;
+	padding:0px;
+	margin:0px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
