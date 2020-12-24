@@ -1,7 +1,9 @@
 package com.sens.pond.repository;
 import java.util.List;
 import org.springframework.stereotype.Repository;
-import com.sens.pond.domain.Board;
+
+import com.sens.pond.entity.Board;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

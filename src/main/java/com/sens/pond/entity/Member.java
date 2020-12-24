@@ -1,4 +1,4 @@
-package com.sens.pond.domain;
+package com.sens.pond.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +30,5 @@ public class Member {
 		this.id = id;
 		this.name = name;
 		this.email = email;
-	}
-	
+	}	
 }

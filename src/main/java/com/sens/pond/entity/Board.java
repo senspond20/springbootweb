@@ -1,4 +1,4 @@
-package com.sens.pond.domain;
+package com.sens.pond.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

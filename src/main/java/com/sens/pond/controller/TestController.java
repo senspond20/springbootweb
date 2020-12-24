@@ -1,7 +1,5 @@
 package com.sens.pond.controller;
 
-import org.apache.logging.log4j.Logger;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -9,11 +9,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.sens.pond.domain.Board;
+import com.sens.pond.dto.BoardResponseDto;
+import com.sens.pond.dto.BoardSaveRequestDto;
+import com.sens.pond.dto.BoardUpdateRequestDto;
+import com.sens.pond.entity.Board;
 import com.sens.pond.repository.BoardRepository;
-import com.sens.pond.service.dto.BoardResponseDto;
-import com.sens.pond.service.dto.BoardSaveRequestDto;
-import com.sens.pond.service.dto.BoardUpdateRequestDto;
 
 import lombok.RequiredArgsConstructor;
 
