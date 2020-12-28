@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -70,14 +72,46 @@ public class BoardController {
         });
 	}
 
+	@GetMapping("/api/boardp")
+	public ResponseEntity<?> showBoardByPageApi(@PageableDefault Pageable pageable) {
+		ModelAndView mv = new ModelAndView();	
+//		InsertDummy();
+	
+		Page<Board> boardList =  boardService.getBoardList(pageable);
+		mv.addObject("list", boardList);
+		log.info("총 element 수 : {}, 전체 page 수 : {}, 페이지에 표시할 element 수 : {}, 현재 페이지 index : {}, 현재 페이지의 element 수 : {}",
+	                boardList.getTotalElements(), boardList.getTotalPages(), boardList.getSize(),
+	                boardList.getNumber(), boardList.getNumberOfElements());
+		mv.setViewName("board/showboard");
+		return ResponseEntity.ok(boardList);
+	}
+	
+	@GetMapping("/api/boardp/{page}")
+	public ResponseEntity<?> showBoardByPageApi(@PathVariable int page) {
+		ModelAndView mv = new ModelAndView();	
+		int size = 5;
+		Sort sort = Sort.by("id").descending();
+		Page<Board> boardList =  boardService.getBoardListFromPageRequest(page, size, sort);
+		mv.addObject("list", boardList);
+		log.info("총 element 수 : {}, 전체 page 수 : {}, 페이지에 표시할 element 수 : {}, 현재 페이지 index : {}, 현재 페이지의 element 수 : {}",
+	                boardList.getTotalElements(), boardList.getTotalPages(), boardList.getSize(),
+	                boardList.getNumber(), boardList.getNumberOfElements());
+		mv.setViewName("board/showboard");
+		return ResponseEntity.ok(boardList);
+	}
+	
+	
 	// =======================================
 	// View return
 	// =======================================
 	@GetMapping("/show/board")
 	public ModelAndView showBoard() {
 		ModelAndView mv = new ModelAndView();	
-		InsertDummy();
-		mv.addObject("list", boardService.findAll());
+//		InsertDummy();
+//		mv.addObject("list", boardService.findAll());
+		
+		// id 로 내림차순 정렬
+		mv.addObject("list", boardService.findAll(Sort.by("id").descending()));
 		mv.setViewName("board/showboard");
 		return mv;
 	}
@@ -94,6 +128,9 @@ public class BoardController {
 		mv.setViewName("board/showboard");
 		return mv;
 	}
+	
+
+	
 
 	@GetMapping("/show/map")
 	public ModelAndView showMap() {
