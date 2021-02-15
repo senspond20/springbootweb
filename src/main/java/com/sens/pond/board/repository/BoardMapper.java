@@ -12,5 +12,5 @@ public interface BoardMapper {
     public List<Board> selectBoardAll();
     public int selectOne();
 
-    public void insertBoard_Batch(List<Board> list);
+    public int insertBoard_Batch(List<Board> list);
 }

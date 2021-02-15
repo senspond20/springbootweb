@@ -41,7 +41,7 @@ public class MyCLRunner implements CommandLineRunner {
         List<Map<String,Object>> listmap = jdbcTemplate.queryForList("SELECT * FROM BOARD");
         logger.info("listmap {}", listmap);
 
-        int count = 100;
+        int count = 10000;
         long beforeTime = System.currentTimeMillis(); 
         IntStream.rangeClosed(1, count).forEach(i -> {
             Board board = Board.builder()
@@ -52,6 +52,6 @@ public class MyCLRunner implements CommandLineRunner {
             boardRepository.save(board);
         });
         long afterTime = System.currentTimeMillis(); 
-        logger.info("@@ Insert Board {}건 수행 시간 : {}ms", count,(afterTime - beforeTime));
+        logger.info("@@ Insert Board {} 건 수행 시간 : {}ms", count,(afterTime - beforeTime));
     } 
 }

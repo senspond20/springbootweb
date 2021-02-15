@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 //일반 자바빈 규약대로 @Getter/@Setter를 만들기 쉽지만
 //@Entity 가 붙으면 @Setter를 만들어서는 안된다.
@@ -20,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Table(name ="board")
+@ToString
 public class Board {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
