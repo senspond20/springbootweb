@@ -4,6 +4,7 @@ import java.util.stream.IntStream;
 
 import com.sens.pond.board.entity.Board;
 import com.sens.pond.board.repository.BoardRepository;
+import com.sens.pond.config.MyCLRunner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,16 +15,22 @@ import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 public class SenswebApplication {
-	@Autowired 
-	private BoardRepository boardRepository;
+	// @Autowired 
+	// private BoardRepository boardRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SenswebApplication.class, args);
 	}
+	
+	// 애플리케이션 실행 시점에 수행되는 초기화 코드
+	@Bean
+	public CommandLineRunner myCLineRunner(){
+		return new MyCLRunner();
+	}
 
 	// https://jeong-pro.tistory.com/206
 	// component scanning에 의한 방식으로 빈을 등록하는 방법
-	@Component 
+	/*@Component 
 	class MyCLRunner implements CommandLineRunner{ 
 		@Override public void run(String... args) throws Exception { 
 			int count = 154;
@@ -39,7 +46,7 @@ public class SenswebApplication {
 			long afterTime = System.currentTimeMillis(); 
 			System.out.println("@@ Insert Board" + count + "건 수행 시간 : " + (afterTime - beforeTime) + "ms");
 		} 
-	}
+	}*/
 
 	/**
      * 	샘플 데이터 
