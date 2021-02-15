@@ -1,4 +1,4 @@
-package com.sens.pond.controller;
+package com.sens.pond.board.controller;
 
 import java.util.HashMap;
 import java.util.List;
