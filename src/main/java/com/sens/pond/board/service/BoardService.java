@@ -1,8 +1,13 @@
-package com.sens.pond.service;
+package com.sens.pond.board.service;
 
 import java.util.List;
-
 import javax.transaction.Transactional;
+
+import com.sens.pond.board.entity.Board;
+import com.sens.pond.board.repository.BoardRepository;
+import com.sens.pond.board.service.dto.BoardResponseDto;
+import com.sens.pond.board.service.dto.BoardSaveRequestDto;
+import com.sens.pond.board.service.dto.BoardUpdateRequestDto;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,11 +15,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.sens.pond.dto.BoardResponseDto;
-import com.sens.pond.dto.BoardSaveRequestDto;
-import com.sens.pond.dto.BoardUpdateRequestDto;
-import com.sens.pond.entity.Board;
-import com.sens.pond.repository.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
 

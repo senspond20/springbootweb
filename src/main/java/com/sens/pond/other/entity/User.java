@@ -1,4 +1,4 @@
-package com.sens.pond.entity;
+package com.sens.pond.other.entity;
 
 import java.io.Serializable;
 import javax.persistence.Id;

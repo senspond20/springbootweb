@@ -1,6 +1,6 @@
-package com.sens.pond.dto;
+package com.sens.pond.board.service.dto;
+import com.sens.pond.board.entity.Board;
 
-import com.sens.pond.entity.Board;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

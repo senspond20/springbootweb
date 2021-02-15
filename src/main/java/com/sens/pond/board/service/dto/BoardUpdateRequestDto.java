@@ -1,4 +1,4 @@
-package com.sens.pond.dto;
+package com.sens.pond.board.service.dto;
 
 import lombok.Builder;
 import lombok.Getter;

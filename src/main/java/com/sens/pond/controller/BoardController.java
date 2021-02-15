@@ -8,7 +8,12 @@ import java.util.stream.IntStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Required;
+import com.sens.pond.board.entity.Board;
+import com.sens.pond.board.service.BoardService;
+import com.sens.pond.board.service.dto.BoardResponseDto;
+import com.sens.pond.board.service.dto.BoardSaveRequestDto;
+import com.sens.pond.board.service.dto.BoardUpdateRequestDto;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -25,16 +30,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sens.pond.dto.BoardResponseDto;
-import com.sens.pond.dto.BoardSaveRequestDto;
-import com.sens.pond.dto.BoardUpdateRequestDto;
-import com.sens.pond.entity.Board;
-import com.sens.pond.service.BoardService;
-import com.sun.istack.Nullable;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.implementation.bind.annotation.Default;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -251,7 +248,7 @@ public class BoardController {
 //		mv.addObject("list", boardService.findAll());
 		
 		// id 로 내림차순 정렬
-		mv.addObject("list", boardService.findAll(Sort.by("id").descending()));
+//		mv.addObject("list", boardService.findAll(Sort.by("id").descending()));
 		mv.setViewName("board/showboard");
 		return mv;
 	}

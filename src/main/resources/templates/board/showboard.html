@@ -5,13 +5,17 @@
 	<title>Document</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/css/global.css" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<!-- 	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script> -->
+	
+<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!-- 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
 	<!-- 합쳐지고 최소화된 최신 CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 	<!-- 부가적인 테마 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
@@ -56,7 +60,22 @@
 					</table>
 				</div>
 			</div>
-		
+			<div class="container">
+			<div class="row">
+				<div class="col">
+					<p><strong>Pagination</strong></p>
+					<ul class="pagination">
+						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">4</a></li>
+						<li class="page-item"><a class="page-link" href="#">5</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 			<div class ="input_form">
  				<form action ="/vi/posts" method ="post">
 					<div class ="form-group1">
@@ -71,7 +90,10 @@
 					<div class ="form-group"><input id ="submitform2" type ="submit" value ="전송" class="btn btn-primary" /></div>
 				</form>
 			</div>
+			
 		</main>
+		
+		<button id ="submitform">전송</button>
 	</section>
 	
 	
@@ -79,7 +101,65 @@
 	{{>layouts/footer}}
 	</footer>
 	
-	<script>
+	<script type="text/javascript">
+		function getDataFromAjax(url, data, callback){
+			$.ajax({
+				url : url,
+ 				type : "application/json",
+				method : "get",
+				data : data,
+				success : callback
+			})
+		};
+
+		function drawBoard(page, size){	
+			getDataFromAjax("/api/boards", {page : page, size: size}, function(data){
+				console.log(data);
+				console.log(data.content);
+				
+				var board = data.content
+				var tbody = $('.table-body');
+				
+				var html = '';
+				board.map(item => {
+					html = `<tr>
+								<td scope="row">{{id}}</td>
+								<td>{{title}}</td>
+								<td>{{content}}</td>
+								<td>{{author}}</td>
+							</tr>
+					`;
+					console.log(item.id);
+// 					tbody.append("<tr>")
+// 						 .append("<td scope='row'>").append(item.id).append('</td>')
+// 						 .append("<td>").append(item.title).append('</td>')
+// 						 .append("<td>").append(item.content).append('</td>')
+// 						 .append("<td>").append(item.author).append('</td>')
+// 						 .append("</tr>");
+				});
+				
+				
+				
+// 				$('.table-body').append("<tr><td scope='row'>").append)
+// 				<tbody class ="table-body text-center">
+// 				{{#list}}
+// 					<tr>
+// 						<td scope="row">{{id}}</td>
+// 						<td>{{title}}</td>
+// 						<td>{{content}}</td>
+// 						<td>{{author}}</td>
+// 					</tr>
+// 				{{/list}}
+// 				</tbody>
+			});		
+		};
+		
+		(function(){
+			drawBoard(1,5);
+			
+		})();
+		
+
 		$('#submitform').on('click',function(){
 			alert('전송')
 			$.ajax({
