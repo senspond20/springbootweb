@@ -12,21 +12,21 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-// @Entity
-// @Getter
-// @NoArgsConstructor
-// @Table(name ="boardreply")
-// public class BoardReply {
+@Entity
+@Getter
+@NoArgsConstructor
+@Table(name ="boardreply")
+public class BoardReply {
 
-// 	@Id
-// 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-// 	private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-// 	@ManyToOne
-// 	@JoinColumn(name = "board_id")
-// 	private Long bid;
+	@ManyToOne
+	@JoinColumn(name = "board_id")
+	private Board bid;
 	
-// 	@Column(columnDefinition = "TEXT", nullable = false)
-// 	private String content;
+	@Column(columnDefinition = "TEXT", nullable = false)
+	private String content;
 
-// }
+}
