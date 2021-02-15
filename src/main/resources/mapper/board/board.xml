@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sens.pond.board.repository.BoardMapper" >
+ 
+    <select id="selectBoardAll" resultType="Board">
+        SELECT * FROM BOARD
+    </select>
+    
+
+    <select id="selectOne" resultType="_int">
+        SELECT 1
+    </select>
+
+    <insert id="insertBoard_Batch" parameterType="Board">
+			INSERT INTO BOARD
+				(
+				  TITLE
+				, CONTENT
+				, AUTHOR
+				) 
+		    VALUES
+	    <foreach collection="list" item="i" separator="," >
+	       (#{i.title},#{i.content},#{i.author})
+	    </foreach>
+	</insert>
+
+</mapper>

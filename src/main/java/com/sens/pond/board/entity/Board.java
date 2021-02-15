@@ -35,9 +35,8 @@ public class Board {
 	private String author;
 
 	@Builder // 빌더패턴 적용
-	public Board(Long id, String title, String content, String author) {
+	public Board(String title, String content, String author) {
 		super();
-		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.author = author;

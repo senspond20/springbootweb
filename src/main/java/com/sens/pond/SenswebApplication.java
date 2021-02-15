@@ -6,6 +6,7 @@ import com.sens.pond.board.entity.Board;
 import com.sens.pond.board.repository.BoardRepository;
 import com.sens.pond.config.MyCLRunner;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,7 +22,7 @@ public class SenswebApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SenswebApplication.class, args);
 	}
-	
+
 	// 애플리케이션 실행 시점에 수행되는 초기화 코드
 	@Bean
 	public CommandLineRunner myCLineRunner(){
