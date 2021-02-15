@@ -14,6 +14,8 @@ import com.sens.pond.board.entity.Board;
 import com.sens.pond.board.repository.BoardMapper;
 import com.sens.pond.board.repository.BoardRepository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class BoardTestController {
  
+    private Logger logger = LoggerFactory.getLogger(BoardTestController.class);
+
     @Autowired
     private BoardMapper mapper;
 
@@ -52,7 +56,7 @@ public class BoardTestController {
         for(int i =1; i <= count; i++){
             list.add(new Board("제목입니다" + i, "내용입니다" + i, "작성자입니다" + i));
         }
-        System.out.println(mapper.insertBoard_Batch(list) + "건이 INSERT 되었습니다.");
+        logger.info(mapper.insertBoard_Batch(list) + "건이 INSERT 되었습니다.");
     }
 
     @Autowired
@@ -65,7 +69,7 @@ public class BoardTestController {
         for(int i =1; i <= 10000; i++){
             boardRepository.save(new Board("제목입니다" + i, "내용입니다" + i, "작성자입니다" + i));
         }
-        System.out.println(count + "건이 INSERT 되었습니다.");
+        logger.info(count + "건이 INSERT 되었습니다.");
 
         // IntStream.rangeClosed(1, 10000).forEach(i -> {
         //     Board board = Board.builder()
@@ -115,7 +119,7 @@ public class BoardTestController {
         //System.out.println(sb.toString());
         JdbcTemplate.execute(sql.toString());
         sql = null;
-        System.out.println(count + "건이 INSERT 되었습니다.");
+        logger.info(count + "건이 INSERT 되었습니다.");
     }
 
     private String convertStr(List<String> list) {
