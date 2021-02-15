@@ -79,39 +79,45 @@ public class BoardTestController {
     public void insertBoardJDBC(){
         final int count = 10000;
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("INSERT INTO BOARD (TITLE,CONTENT,AUTHOR) VALUES ");
+        StringBuilder sql = new StringBuilder();
+        sql.append("INSERT INTO BOARD (TITLE,CONTENT,AUTHOR) VALUES ");
      
         for(int i =1; i <= count; i++){
             Board b = new Board("제목입니다" + i, "내용입니다" + i, "작성자입니다" + i);
             // List<String> list = Arrays.asList("'" + b.getTitle() +"'", "'" +b.getContent() +"'", "'" +b.getAuthor() +"'");
             // sb.append("(").append(list.toString().replace("[", "").replace("]", ""));
 
-            sb.append("(").append(
-                Arrays.asList(b.getTitle(),b.getContent(),b.getAuthor())
+            // convertStr(Arrays.asList(b.getTitle(), b.getContent(), b.getAuthor()));
+
+           /* sql.append("(").append(
+                Arrays.asList(b.getTitle(), b.getContent(), b.getAuthor())
                     .stream().map(item -> "'".concat(item).concat("'")).collect(Collectors.toList())
                     .toString().replace("[", "").replace("]", "")
-            );
+            );*/
+
+            sql.append("(")
+               .append(convertStr(Arrays.asList(
+                    b.getTitle(), 
+                    b.getContent(), 
+                    b.getAuthor())));
             if(i != count){
-                sb.append("),");
+                sql.append("),");
             }else{
-                sb.append(")");
+                sql.append(")");
             }
         }
         //System.out.println(sb.toString());
-        JdbcTemplate.execute(sb.toString());
-        sb = null;
+        JdbcTemplate.execute(sql.toString());
+        sql = null;
     
     }
 
-    private static String convertStr(List<String> list) {
+    private String convertStr(List<String> list) {
 
-     
-
-        List<String> collect1 = list.stream().map(n -> "'".concat(n).concat("'")).collect(Collectors.toList());
-        System.out.println(collect1.toString().replace("[", "").replace("]", ""));
-
-        return collect1.toString();
+        String str = list.stream()
+                         .map(item -> "'".concat(item).concat("'")).collect(Collectors.toList())
+                         .toString().replace("[", "").replace("]", "");
+        return str;
     }
 
     public static void main(String[] args) {
