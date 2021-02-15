@@ -32,6 +32,12 @@ public class BoardTestController {
         return mapper.selectBoardAll();
     }
 
+    @GetMapping("/junit5/test")
+    @ResponseBody
+    public Object junit5Test(){
+        return "testsss";
+    }
+
     @GetMapping("/mybatis/one")
     @ResponseBody
     public Object selectOne(){
