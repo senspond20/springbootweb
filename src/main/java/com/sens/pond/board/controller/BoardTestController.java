@@ -46,7 +46,7 @@ public class BoardTestController {
         for(int i =1; i <= count; i++){
             list.add(new Board("제목입니다" + i, "내용입니다" + i, "작성자입니다" + i));
         }
-        System.out.println(mapper.insertBoard_Batch(list) + "건이 업데이트 되었습니다.");
+        System.out.println(mapper.insertBoard_Batch(list) + "건이 INSERT 되었습니다.");
     }
 
     @Autowired
@@ -59,7 +59,7 @@ public class BoardTestController {
         for(int i =1; i <= 10000; i++){
             boardRepository.save(new Board("제목입니다" + i, "내용입니다" + i, "작성자입니다" + i));
         }
-        System.out.println(count + "건이 업데이트 되었습니다.");
+        System.out.println(count + "건이 INSERT 되었습니다.");
 
         // IntStream.rangeClosed(1, 10000).forEach(i -> {
         //     Board board = Board.builder()
@@ -109,7 +109,7 @@ public class BoardTestController {
         //System.out.println(sb.toString());
         JdbcTemplate.execute(sql.toString());
         sql = null;
-    
+        System.out.println(count + "건이 INSERT 되었습니다.");
     }
 
     private String convertStr(List<String> list) {
@@ -120,17 +120,6 @@ public class BoardTestController {
         return str;
     }
 
-    public static void main(String[] args) {
-
-        Board b = new Board("제목입니다" + 1, "내용입니다" + 1, "작성자입니다" + 1);
-        String val = Arrays.asList(b.getTitle(),b.getContent(),b.getAuthor())
-              .stream().map(item -> "'".concat(item).concat("'")).collect(Collectors.toList()).toString().replace("[", "").replace("]", "");
-        System.out.println(val);
-
-        // System.out.println(new ObjectMapper().convertValue(b, Map.class));
-
-        // convertStr(list);
-    }
     @GetMapping("/board/test/jdbc2")
     @ResponseBody
     public void insertBoardJDBCLow(){
