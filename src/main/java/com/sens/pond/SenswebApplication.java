@@ -24,7 +24,7 @@ public class SenswebApplication {
 	// https://jeong-pro.tistory.com/206
 	// component scanning에 의한 방식으로 빈을 등록하는 방법
 	@Component 
-	class MyCLRunner implements { 
+	class MyCLRunner implements CommandLineRunner{ 
 		@Override public void run(String... args) throws Exception { 
 			int count = 154;
 			long beforeTime = System.currentTimeMillis(); 
