@@ -1,15 +1,18 @@
-package com.sens.pond.tenserflow.model;
+package com.sens.pond.utils.csv;
 
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author senshig 2021-02-17
+ **/
 @Getter
 @Setter
 public class Matrix {
     private int maxRow;
     private int maxCol;
     private Object[][] data;
-    
+
     public Matrix(){}
 
     public Matrix(int maxRow, int maxCol, Object[][] data){
@@ -18,4 +21,3 @@ public class Matrix {
         this.data = data;
     }
 }
-

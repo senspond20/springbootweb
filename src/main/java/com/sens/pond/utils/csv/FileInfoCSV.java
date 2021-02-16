@@ -1,13 +1,13 @@
-package com.sens.pond.tenserflow.model;
-
+package com.sens.pond.utils.csv;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
+/**
+ * @author senshig 2021-02-17
+ **/
 @Getter
 @Setter
-@ToString
 public class FileInfoCSV extends Matrix {
     private String fileName;
     private String mimeType;
@@ -21,7 +21,6 @@ public class FileInfoCSV extends Matrix {
         this.fileName = fileName;
         this.mimeType = mimeType;
     }
-
     @Builder
     public FileInfoCSV(String fileName, String mimeType, int maxRow, int maxCol, Object[] header, Object[][] data){
         super(maxRow, maxCol, data);
