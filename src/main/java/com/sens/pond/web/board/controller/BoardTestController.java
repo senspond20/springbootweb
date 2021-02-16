@@ -1,4 +1,4 @@
-package com.sens.pond.board.controller;
+package com.sens.pond.web.board.controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sens.pond.board.entity.Board;
-import com.sens.pond.board.repository.BoardMapper;
-import com.sens.pond.board.repository.BoardRepository;
+import com.sens.pond.web.board.entity.Board;
+import com.sens.pond.web.board.repository.BoardMapper;
+import com.sens.pond.web.board.repository.BoardRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

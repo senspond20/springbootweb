@@ -1,7 +1,7 @@
-package com.sens.pond.board.repository;
+package com.sens.pond.web.board.repository;
 
 import java.util.List;
-import com.sens.pond.board.entity.Board;
+import com.sens.pond.web.board.entity.Board;
 
 import org.apache.ibatis.annotations.Mapper;
 

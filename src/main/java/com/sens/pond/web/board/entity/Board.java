@@ -1,4 +1,4 @@
-package com.sens.pond.board.entity;
+package com.sens.pond.web.board.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

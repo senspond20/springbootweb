@@ -7,8 +7,8 @@ import java.util.stream.IntStream;
 
 import javax.sql.DataSource;
 
-import com.sens.pond.board.entity.Board;
-import com.sens.pond.board.repository.BoardRepository;
+import com.sens.pond.web.board.entity.Board;
+import com.sens.pond.web.board.repository.BoardRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +38,8 @@ public class MyCLRunner implements CommandLineRunner {
         logger.info("UserName : {}", connection.getMetaData().getUserName());
         
          // JdbcTemplate
-        List<Map<String,Object>> listmap = jdbcTemplate.queryForList("SELECT * FROM BOARD");
+       /*
+         List<Map<String,Object>> listmap = jdbcTemplate.queryForList("SELECT * FROM BOARD");
         logger.info("listmap {}", listmap);
 
         int count = 10000;
@@ -53,5 +54,6 @@ public class MyCLRunner implements CommandLineRunner {
         });
         long afterTime = System.currentTimeMillis(); 
         logger.info("@@ Insert Board {} 건 수행 시간 : {}ms", count,(afterTime - beforeTime));
+        */
     } 
 }

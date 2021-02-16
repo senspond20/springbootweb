@@ -1,13 +1,13 @@
-package com.sens.pond.board.service;
+package com.sens.pond.web.board.service;
 
 import java.util.List;
 import javax.transaction.Transactional;
 
-import com.sens.pond.board.entity.Board;
-import com.sens.pond.board.repository.BoardRepository;
-import com.sens.pond.board.service.dto.BoardResponseDto;
-import com.sens.pond.board.service.dto.BoardSaveRequestDto;
-import com.sens.pond.board.service.dto.BoardUpdateRequestDto;
+import com.sens.pond.web.board.entity.Board;
+import com.sens.pond.web.board.repository.BoardRepository;
+import com.sens.pond.web.board.service.dto.BoardResponseDto;
+import com.sens.pond.web.board.service.dto.BoardSaveRequestDto;
+import com.sens.pond.web.board.service.dto.BoardUpdateRequestDto;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

@@ -1,4 +1,4 @@
-package com.sens.pond.board.controller;
+package com.sens.pond.web.board.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,11 +8,11 @@ import java.util.stream.IntStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sens.pond.board.entity.Board;
-import com.sens.pond.board.service.BoardService;
-import com.sens.pond.board.service.dto.BoardResponseDto;
-import com.sens.pond.board.service.dto.BoardSaveRequestDto;
-import com.sens.pond.board.service.dto.BoardUpdateRequestDto;
+import com.sens.pond.web.board.entity.Board;
+import com.sens.pond.web.board.service.BoardService;
+import com.sens.pond.web.board.service.dto.BoardResponseDto;
+import com.sens.pond.web.board.service.dto.BoardSaveRequestDto;
+import com.sens.pond.web.board.service.dto.BoardUpdateRequestDto;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

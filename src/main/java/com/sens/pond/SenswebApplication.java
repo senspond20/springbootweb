@@ -1,18 +1,12 @@
 package com.sens.pond;
 
-import java.util.stream.IntStream;
-
-import com.sens.pond.board.entity.Board;
-import com.sens.pond.board.repository.BoardRepository;
 import com.sens.pond.config.MyCLRunner;
 
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+
 
 @SpringBootApplication
 public class SenswebApplication {
@@ -23,11 +17,11 @@ public class SenswebApplication {
 		SpringApplication.run(SenswebApplication.class, args);
 	}
 
-	// 애플리케이션 실행 시점에 수행되는 초기화 코드
-	// @Bean
-	// public CommandLineRunner myCLineRunner(){
-	// 	return new MyCLRunner();
-	// }
+	//애플리케이션 실행 시점에 수행되는 초기화 코드
+	@Bean
+	public CommandLineRunner myCLineRunner(){
+		return new MyCLRunner();
+	}
 
 	// https://jeong-pro.tistory.com/206
 	// component scanning에 의한 방식으로 빈을 등록하는 방법

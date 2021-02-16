@@ -1,4 +1,4 @@
-package com.sens.pond.tesseract;
+package com.sens.pond.web.tesseract;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
