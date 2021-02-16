@@ -24,10 +24,10 @@ public class SenswebApplication {
 	}
 
 	// 애플리케이션 실행 시점에 수행되는 초기화 코드
-	@Bean
-	public CommandLineRunner myCLineRunner(){
-		return new MyCLRunner();
-	}
+	// @Bean
+	// public CommandLineRunner myCLineRunner(){
+	// 	return new MyCLRunner();
+	// }
 
 	// https://jeong-pro.tistory.com/206
 	// component scanning에 의한 방식으로 빈을 등록하는 방법
