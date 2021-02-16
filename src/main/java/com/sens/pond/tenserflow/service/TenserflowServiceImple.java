@@ -11,6 +11,9 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.xml.bind.ValidationException;
 
@@ -20,8 +23,6 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.springframework.stereotype.Service;
 import org.tensorflow.TensorFlow;
-
-import javassist.bytecode.stackmap.BasicBlock.Catch;
 
 @Service
 public class TenserflowServiceImple implements TenserflowService {
@@ -36,48 +37,74 @@ public class TenserflowServiceImple implements TenserflowService {
         return Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "data");
     }
 
+    public void printMatrix(Object[][] obj){
+        for(int i=0; i < obj.length; i++){
+            for(int j=0; j < obj[i].length; j++){
+                System.out.print(obj[i][j]);
+            }
+            System.out.println();
+        }
+    }
     @Override
-    public FileInfoCSV loadCSV(String fileName) throws ValidationException, FileNotFoundException {
+    public FileInfoCSV loadCSV(String fileName, boolean isPrint) throws ValidationException, IOException {
 
         // 파일이름에서 확장자를 뽑아 csv 형식인지 유효성 검사
         String last = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
         if (!last.toLowerCase().equals("csv")) {
             throw new ValidationException("해당 파일의 확장자가 csv 형식이 아닙니다");
         }
+        
+        Path filePath = Paths.get(getAppDataPath().toString(), fileName);
 
-        FileInfoCSV fileInfo = new FileInfoCSV();
-        File directory = new File(getAppDataPath().toUri());
-        // 폴더 미존재시 폴더 생성
-        if (!directory.exists()) {
-            directory.mkdir();
-        }
-
-        // 경로에 해당 파일이 존재하는지 체크       
-        Path filePath = Paths.get(directory.toString(), fileName);
-
+        // 경로에 해당 파일이 존재하는지 체크
         File file = new File(filePath.toUri());
+        FileInfoCSV fileInfo = new FileInfoCSV();
+
         if (!file.exists()) {
             throw new FileNotFoundException("해당 파일이 존재하지 않습니다.");
-        } else {
-            String mimeType = "";
-            fileInfo.setFileName(fileName);
-            fileInfo.setMimeType(mimeType);
-            // try ~ catch ~ resouces 
-            try (
-                BufferedReader br = new BufferedReader(new FileReader(file));
-            ) {
-                mimeType = Files.probeContentType(filePath);
-                br.close();
-            } catch (IOException e) {
+        } 
+        fileInfo.setFileName(fileName);
+        // try ~ catch ~ resouces
+        try (BufferedReader br = new BufferedReader(new FileReader(file));) {
+            Object[][] buffer = new Object[1500][1500];
+            fileInfo.setMimeType(Files.probeContentType(filePath));
 
+            String line ="";
+            int maxCol = 0;
+            int maxRow = 0;
+            while((line =br.readLine())!= null){
+                String colStr[] = line.split(",");
+                int tempCol = colStr.length;
+                if(tempCol > maxCol){
+                    maxCol = tempCol;
+                }
+                
+                for(int col=0; col < tempCol; col ++){
+                    buffer[maxRow][col] = colStr[col];
+                }
+                maxRow++;
             }
+            
+            Object[][] obj = new Object[maxRow][maxCol];
+            if(isPrint) System.out.printf("==== [%s] ====\n", fileName);
+            for(int i=0; i < obj.length; i++){
+                for(int j=0; j <obj[i].length; j++){
+                    obj[i][j] = (buffer[i][j] != null) 
+                                ? buffer[i][j] 
+                                : "" ;
+                    if(isPrint) System.out.printf("%s ", obj[i][j]);
+                }
+                if(isPrint) System.out.println();
+            }
+            if(isPrint) System.out.println("====================");
+            br.close();
 
-            String line = "";
-            String[] field = null;
-
-
+            fileInfo.setMaxRow(maxRow);
+            fileInfo.setMaxCol(maxCol);
+            fileInfo.setData(obj);
+        } catch (IOException e) {
+            throw new IOException("파일을 불러오는데 실패하였습니다.");
         }
-
         return fileInfo;
     }
 

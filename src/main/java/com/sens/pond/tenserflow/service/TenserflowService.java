@@ -14,5 +14,5 @@ public interface TenserflowService {
 
     public Path getAppDataPath();
 
-    public FileInfoCSV loadCSV(String fileName) throws ValidationException, FileNotFoundException;
+    public FileInfoCSV loadCSV(String fileName, boolean isPrint) throws ValidationException, IOException;
 }

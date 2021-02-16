@@ -1,20 +1,28 @@
 package com.sens.pond.tenserflow.model;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
-public class FileInfoCSV {
+public class FileInfoCSV extends Matrix {
     private String fileName;
     private String mimeType;
-    private Long fileSize;
-    private float[][] dataArray;
+
+    public FileInfoCSV(){
+        super();
+    }
+    public FileInfoCSV(String fileName, String mimeType){
+        super();
+        this.fileName = fileName;
+        this.mimeType = mimeType;
+    }
+    public FileInfoCSV(String fileName, String mimeType, int maxRow, int maxCol, Object[][] data){
+        super(maxRow, maxCol, data);
+        this.fileName = fileName;
+        this.mimeType = mimeType;
+    }
 }
