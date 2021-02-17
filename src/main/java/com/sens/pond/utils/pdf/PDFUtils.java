@@ -11,15 +11,16 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 public class PDFUtils {
 
-    private final String PATH = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "data").toString();
+    private String rootPath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "data").toString();
 
     public PDFUtils(){ }
 
-    public String readPDF(String fileName) {
-        return readPDF(PATH, fileName);
+    public PDFUtils(String rootPath){
+        this.rootPath = rootPath;
     }
-    public String readPDF(String filePath, String fileName) {
-        Path path = Paths.get(filePath, fileName);
+
+    public String readPDF(String fileName) {
+        Path path = Paths.get(rootPath, fileName);
         File source = new File(path.toUri());
         PDDocument pdfDoc;
         String text ="";
