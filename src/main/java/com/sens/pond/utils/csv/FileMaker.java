@@ -236,7 +236,7 @@ public class FileMaker {
 		List<HashMap<Object, Object>> list2 = new ArrayList<HashMap<Object,Object>>();
 		HashMap<Object, Object> item = new HashMap<Object, Object>();
 		item.put("1", "1번데이터");
-		item.put("2", "2번데이터");
+		item.put("4", "2번데이터");
 		list2.add(item);
 
 		try {

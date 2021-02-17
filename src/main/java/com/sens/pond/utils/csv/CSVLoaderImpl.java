@@ -121,9 +121,9 @@ public class CSVLoaderImpl implements CSVLoader {
             br.close();
 
             // list를 2차원 배열로 할당하며 변환
-            @SuppressWarnings("unchecked")
+            // @SuppressWarnings("unchecked")
             Object[][] data = list.stream()
-                                  .map(   item -> ((Collection<Object>) item).stream().toArray()  )
+                                  .map(   item -> ((Collection<?>) item).stream().toArray()  )
                                   .toArray(Object[][]::new);
             list = null;
 
