@@ -7,9 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sens.pond.web.board.entity.Board;
 import com.sens.pond.web.board.repository.BoardMapper;
 import com.sens.pond.web.board.repository.BoardRepository;
@@ -23,9 +20,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class BoardTestController {
+public class BoardManyInsertTestController {
  
-    private Logger logger = LoggerFactory.getLogger(BoardTestController.class);
+    private Logger logger = LoggerFactory.getLogger(BoardManyInsertTestController.class);
 
     @Autowired
     private BoardMapper mapper;
@@ -38,17 +35,10 @@ public class BoardTestController {
 
     final int count = 10000;
     
-    
     @GetMapping("/mybatis/board")
     @ResponseBody
     public Object selectBoardAll(){
         return mapper.selectBoardAll();
-    }
-
-    @GetMapping("/junit5/test")
-    @ResponseBody
-    public Object junit5Test(){
-        return "testsss";
     }
 
     @GetMapping("/mybatis/one")
@@ -57,10 +47,10 @@ public class BoardTestController {
         return mapper.selectOne();
     }
 
-   
     
     /**
-     * 
+     * @apiNote : Mybatis 
+     * @param
      */
     @GetMapping("/board/test/mybatis")
     @ResponseBody
@@ -74,7 +64,10 @@ public class BoardTestController {
         logger.info(mapper.insertBoard_Batch(list) + "건이 INSERT 되었습니다. 수행시간 {}ms",(afterTime -beforeTime));
     }
 
-
+    /**
+     * @apiNote : JPA 
+     * @param
+     */
     @GetMapping("/board/test/jpa")
     @ResponseBody
     public void insertBoardJPA(){
@@ -88,7 +81,10 @@ public class BoardTestController {
 
     }
 
-
+    /**
+     * @apiNote : JDBC 
+     * @param
+     */
     @GetMapping("/board/test/jdbc")
     @ResponseBody
     public void insertBoardJDBC(){
@@ -124,13 +120,6 @@ public class BoardTestController {
                          .map(item -> "'".concat(item).concat("'")).collect(Collectors.toList())
                          .toString().replace("[", "").replace("]", "");
         return str;
-    }
-
-    @GetMapping("/board/test/jdbc2")
-    @ResponseBody
-    public void insertBoardJDBCLow(){
-        // PreparedStateme ps = 
-        //Connection con = PreparedStateme
     }
  
 }
