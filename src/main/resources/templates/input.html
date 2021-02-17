@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+</head>
+<body>
+    <button id ="testBtn1">전송1</button>
+    <button id ="testBtn2">전송2</button>
+    <script>
+        var user1 = {
+            id : "dfd",
+            name : "나영이"
+        }
+        var user2 = {
+            id : "ffefe",
+            name : "가영이"
+        }
+        var data = [];
+        data.push(user1);
+        data.push(user2);
+
+        function testAjax(ele, url){
+            $(ele).on('click',()=>{
+                $.ajax({
+                    url : url,
+                    method : "post",
+                    async : false,
+                    contentType: 'application/json',
+                    dataType : "json",
+                    data : JSON.stringify(data),
+                    success : function(data){
+                        console.log('dfd')
+                    },
+                    error : function(data){
+                        console.log(data);
+                        console.log('erer')
+                    }
+                
+            });
+            
+        })
+    }
+        
+        $('#testBtn1').on('click',()=>{
+            testAjax(this,"/input/test1");
+        });
+        $('#testBtn2').on('click',()=>{
+            testAjax(this,"/input/test2");
+        });
+
+    </script>
+</body>
+</html>

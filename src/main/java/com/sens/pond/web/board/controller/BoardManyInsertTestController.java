@@ -1,11 +1,10 @@
 package com.sens.pond.web.board.controller;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
+
 import java.util.stream.Collectors;
 import com.sens.pond.web.board.entity.Board;
 import com.sens.pond.web.board.repository.BoardMapper;

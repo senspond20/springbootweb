@@ -185,9 +185,11 @@ public static int a(String col) {
             return 702;
         }
         Pattern pattern = Pattern.compile("([A-Z]*)");
-        
-        Matcher mather = pattern.matcher(col);mather.find();
-        System.out.println( mather.group());
+        Matcher mather = pattern.matcher(col);
+        if(mather.find()){
+            System.out.println(mather.group());
+        }
+
         return 0;
     }
 }

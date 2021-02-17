@@ -4,6 +4,7 @@ import java.util.List;
 import com.sens.pond.web.board.entity.Board;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 @Mapper
 public interface BoardMapper {
