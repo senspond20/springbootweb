@@ -58,7 +58,7 @@ public class ConvertController {
     @PostMapping(value = "/input/test1")
     public ResponseEntity<?> test1(@RequestBody String param) {
         System.out.println("============ test1 ============= ");
-
+        JSONArray jsonArray;
         return ResponseEntity.ok().body("ok");
     }
 
@@ -92,7 +92,7 @@ public class ConvertController {
     /**
      * @name test3
      * @apiNote 클라이언트에서 jsonArray를 직렬화 해서 보낼때 서버에서 받기 3
-     *          <정규표현식을 이용한 하드코딩>
+     *          <정규표현식을 이용한 문자열 파싱>
      * @param param
      * @return
      */
@@ -102,8 +102,8 @@ public class ConvertController {
         System.out.println("============ test3 ============= ");
         List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
         
-        Pattern pattern = Pattern.compile("\\{[^\\{\\}]*\\}");
-        Pattern sPattern = Pattern.compile("[\"][^\\,\\{\\}]*");
+        Pattern pattern = Pattern.compile("\\{[^\\{\\}]*\\}");  // { } 리스트 
+        Pattern sPattern = Pattern.compile("[\"][^\\,\\{\\}]*"); // " : " 리스트
         Matcher matcher = pattern.matcher(param);
         Matcher sMatcher = null;
         Map<String,Object> map = null;
@@ -111,9 +111,11 @@ public class ConvertController {
         while(matcher.find()){
             // map = new HashMap<String, Object>();    hashMap은 순서 보장을 하지 않지만 속도가 더 빠르다.
             map = new LinkedHashMap<String, Object>(); 
-            sMatcher = sPattern.matcher(matcher.group());
+            sMatcher = sPattern.matcher(matcher.group()); // { } 을 뽑고
             while (sMatcher.find()) {
-                String[] mk = sMatcher.group().replaceAll("\"", "").split("\\:");
+                //" : " 을 뽑은 다음
+                // "를 없애고 : 를 구분자로 나눈다.
+                String[] mk = sMatcher.group().replaceAll("\"", "").split("\\:"); 
                 map.put(mk[0], mk[1]);
             }
             list.add(map);
