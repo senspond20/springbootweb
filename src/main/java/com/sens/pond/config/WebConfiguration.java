@@ -25,11 +25,11 @@ public class WebConfiguration implements WebMvcConfigurer {
 		registry.viewResolver(resolver);
 	}
 
-//	@Override
-//	public void addInterceptors(InterceptorRegistry registry) {
-//
-//		registry.addInterceptor((HandlerInterceptor) new LoggerInterceptor());
-//		WebMvcConfigurer.super.addInterceptors(registry);
-//	}
+	// @Override
+	// public void addInterceptors(InterceptorRegistry registry) {
+
+	// 	registry.addInterceptor((HandlerInterceptor) new LoggerInterceptor());
+	// 	WebMvcConfigurer.super.addInterceptors(registry);
+	// }
 
 }

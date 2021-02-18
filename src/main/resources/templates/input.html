@@ -10,6 +10,7 @@
 <body>
     <button id ="testBtn1">전송1</button>
     <button id ="testBtn2">전송2</button>
+    <button id ="testBtn3">전송3</button>
     <script>
         var user1 = {
             id : "dfd",
@@ -30,7 +31,7 @@
                     method : "post",
                     async : false,
                     contentType: 'application/json',
-                    dataType : "json",
+                    // dataType : "json",
                     data : JSON.stringify(data),
                     success : function(data){
                         console.log('dfd')
@@ -51,7 +52,9 @@
         $('#testBtn2').on('click',()=>{
             testAjax(this,"/input/test2");
         });
-
+        $('#testBtn3').on('click',()=>{
+            testAjax(this,"/input/test3");
+        });
     </script>
 </body>
 </html>
